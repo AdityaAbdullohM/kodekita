@@ -28,7 +28,8 @@ export async function POST(request: Request) {
         role: user.role,
       },
     });
-  } catch {
+  } catch (error) {
+    console.error("[api/login] Database or authentication error:", error);
     return NextResponse.json({ message: "Layanan login sedang bermasalah. Coba lagi." }, { status: 500 });
   }
 }
