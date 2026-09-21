@@ -1,85 +1,64 @@
 # KODEKITA
 
 > Ruang belajar coding untuk siswa yang ingin bergerak dari rasa ingin tahu menjadi karya web.
-KODEKITA adalah platform belajar coding dengan jalur belajar terstruktur, materi dari guru, quick check, challenge coding, XP, streak, pencapaian, dan leaderboard. Satu aplikasi dipakai oleh dua peran: **siswa** belajar dan mengumpulkan progres, sedangkan **guru** membuat konten dan memantau perkembangan kelas.
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.3-black?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-149eca?logo=react)](https://react.dev/)
-[![Prisma](https://img.shields.io/badge/Prisma-6-2d3748?logo=prisma)](https://www.prisma.io/)
-[![Database](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql)](https://www.postgresql.org/)
-## Daftar Isi
+KODEKITA adalah platform belajar coding dengan jalur belajar terstruktur, materi dari guru, quick check, challenge coding, XP, streak, pencapaian, dan leaderboard.
 
-- [Yang Ada di Dalamnya](#yang-ada-di-dalamnya)
-- [Alur Produk](#alur-produk)
-- [Tech Stack](#tech-stack)
-- [Menjalankan Secara Lokal](#menjalankan-secara-lokal)
-- [Environment Variable](#environment-variable)
-- [Struktur Proyek](#struktur-proyek)
-- [API Utama](#api-utama)
-- [Deployment](#deployment)
-- [Catatan Pengembangan](#catatan-pengembangan)
+## Fitur Utama
 
-## Yang Ada di Dalamnya
-| Area | Kemampuan |
+| Area | Fitur |
 | --- | --- |
-| **Landing & autentikasi** | Landing page, login, registrasi, pilihan peran siswa atau guru, dan pemulihan sesi di browser. |
-| **Dashboard siswa** | Modul aktif, progres keseluruhan, streak, XP, quick check harian, dan insight belajar. |
-| **Jalur belajar** | Guru membuat jalur dan mengunggah materi; siswa membuka file, menandai materi terbaca, lalu menjawab pertanyaan. |
-| **Challenge coding** | Challenge HTML, CSS, JavaScript, dan Next.js dengan editor kode, catatan, live preview, dan contoh solusi. |
-| **Mode pemahaman** | Materi dengan kumpulan soal pilihan ganda dan snippet kode. |
-| **Gamifikasi** | XP, level, streak aktivitas, lencana pencapaian, dan leaderboard siswa. |
-| **Workspace guru** | Dashboard kelas, pembuatan jalur, upload materi, editor kuis, challenge, pencapaian, dan monitoring siswa. |
-| **Responsive UI** | Layout dashboard, form, modal, tabel monitoring, leaderboard, landing page, dan editor yang menyesuaikan layar mobile. |
+| Autentikasi | Login, registrasi, pilihan role siswa atau guru, dan pemulihan sesi. |
+| Dashboard siswa | Modul aktif, progres, XP, streak, quick check, insight, dan leaderboard. |
+| Jalur belajar | Guru membuat jalur dan materi; siswa membaca materi dan menjawab pertanyaan. |
+| Challenge coding | Editor HTML, CSS, JavaScript, live preview, catatan, dan contoh solusi. |
+| Mode pemahaman | Materi dengan soal pilihan ganda dan snippet kode. |
+| Workspace guru | Kelola jalur, materi, challenge, pencapaian, dan monitoring siswa. |
+| Responsive UI | Dashboard, form, modal, leaderboard, landing page, dan editor mendukung mobile. |
 
-## Alur Produk
+## Alur Pengguna
+
 ```mermaid
 flowchart LR
-		A[Landing page] --> B{Pilih peran}
-		B -->|Siswa| C[Dashboard siswa]
-		B -->|Guru| D[Workspace guru]
-		D --> E[Buat jalur dan materi]
-		D --> F[Buat challenge dan kuis]
-		E --> C
-		C --> G[Belajar dan buka materi]
-		G --> H[Quick check / kuis]
-		C --> I[Challenge coding]
-		H --> J[XP, streak, lencana]
-		I --> J
-		J --> K[Leaderboard]
+    A[Landing page] --> B{Pilih role}
+    B -->|Siswa| C[Dashboard siswa]
+    B -->|Guru| D[Workspace guru]
+    D --> E[Buat materi dan challenge]
+    E --> C
+    C --> F[Belajar dan mengerjakan challenge]
+    F --> G[XP, streak, lencana]
+    G --> H[Leaderboard]
 ```
 
-### Peran Pengguna
-
 <details>
-<summary><strong>Siswa</strong></summary>
+<summary><strong>Alur siswa</strong></summary>
 
-1. Buat akun sebagai siswa atau masuk ke akun yang sudah ada.
-2. Pilih jalur belajar dan buka materi yang tersedia.
-3. Jawab quick check atau kuis untuk menguji pemahaman.
-4. Kerjakan challenge coding di editor dan lihat hasilnya melalui preview.
-5. Kumpulkan XP, jaga streak, buka lencana, dan pantau posisi di leaderboard.
+1. Daftar atau masuk sebagai siswa.
+2. Pilih jalur belajar dan buka materi.
+3. Jawab quick check atau kuis pemahaman.
+4. Kerjakan challenge coding dan lihat hasilnya di live preview.
+5. Kumpulkan XP, jaga streak, dan buka lencana.
 </details>
 
 <details>
-<summary><strong>Guru</strong></summary>
+<summary><strong>Alur guru</strong></summary>
 
-1. Buat akun sebagai guru atau masuk ke akun guru.
-2. Buat jalur belajar beserta kategori dan levelnya.
-3. Upload materi dengan pertanyaan pemahaman.
+1. Daftar atau masuk sebagai guru.
+2. Buat jalur belajar dengan kategori dan level.
+3. Upload materi beserta pertanyaan pemahaman.
 4. Terbitkan challenge coding atau materi pemahaman.
-5. Buat pencapaian dan lihat aktivitas siswa dari workspace guru.
+5. Pantau aktivitas siswa dan buat pencapaian kelas.
 </details>
 
 ## Tech Stack
 
-- **Framework:** Next.js 16 App Router
-- **UI:** React 19, TypeScript, CSS custom responsive
-- **Komponen visual:** Lucide React, Framer Motion
-- **Feedback interaksi:** SweetAlert2
-- **Database:** PostgreSQL
-- **ORM:** Prisma 6
-- **Authentication:** flow login/register berbasis API dan `localStorage` untuk sesi client
-- **Font:** Manrope dan DM Mono melalui Google Fonts
+- Next.js 16 App Router
+- React 19 dan TypeScript
+- CSS custom responsive
+- Prisma 6 dan PostgreSQL
+- Lucide React dan Framer Motion
+- SweetAlert2
+- Manrope dan DM Mono
 
 ## Menjalankan Secara Lokal
 
@@ -87,7 +66,7 @@ flowchart LR
 
 - Node.js 20.9 atau lebih baru
 - npm
-- PostgreSQL yang dapat diakses dari aplikasi
+- PostgreSQL
 
 ### Instalasi
 
@@ -97,56 +76,57 @@ cd kodekita
 npm install
 ```
 
-Buat file `.env` di root project, isi `DATABASE_URL`, lalu jalankan migrasi Prisma:
+Buat file `.env` di root project:
+
+```env
+DATABASE_URL="postgresql://postgres:password@localhost:5432/kodekita"
+```
+
+> Gunakan connection string PostgreSQL sesuai konfigurasi lokal Anda.
+
+Jalankan migrasi dan server:
 
 ```bash
 npx prisma migrate deploy
 npx prisma generate
-```
-
-Jalankan development server:
-
-```bash
 npm run dev
 ```
 
-Buka [http://localhost:3000](http://localhost:3000).
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-<details>
-<summary><strong>Perintah npm yang tersedia</strong></summary>
+### Perintah yang Tersedia
 
 | Perintah | Fungsi |
 | --- | --- |
-| `npm run dev` | Menjalankan server development dengan hot reload. |
+| `npm run dev` | Menjalankan server development. |
 | `npm run lint` | Memeriksa masalah linting. |
 | `npm run build` | Membuat production build. |
-| `npm run start` | Menjalankan production server setelah build. |
-</details>
+| `npm run start` | Menjalankan production server. |
 
 ## Environment Variable
 
-| Variable | Wajib | Contoh | Keterangan |
-| --- | --- | --- | --- |
-| `DATABASE_URL` | Ya | `postgresql://postgres:password@localhost:5432/kodekita` | Connection string PostgreSQL untuk Prisma. |
+| Variable | Wajib | Keterangan |
+| --- | --- | --- |
+| `DATABASE_URL` | Ya | Connection string database PostgreSQL untuk Prisma. |
 
-> Jangan commit file `.env`. File environment sudah dikecualikan melalui `.gitignore`.
+File `.env` tidak boleh di-commit ke repository.
 
 ## Struktur Proyek
 
 ```text
 src/
-	app/
-		api/                  # Route handler autentikasi, learning, challenge, dan guru
-		globals.css           # Design system dan responsive styling
-		layout.tsx            # Root layout dan metadata aplikasi
-		page.tsx              # Landing, autentikasi, dashboard, dan view utama
-	lib/
-		prisma.ts             # Prisma client singleton
+  app/
+    api/                  Route API autentikasi, learning, challenge, dan guru
+    globals.css           Design system dan responsive styling
+    layout.tsx            Root layout aplikasi
+    page.tsx              Landing, autentikasi, dashboard, dan view utama
+  lib/
+    prisma.ts             Prisma client singleton
 prisma/
-	schema.prisma           # Model database dan relasi
-	migrations/             # Riwayat perubahan schema
+  schema.prisma           Model database dan relasi
+  migrations/             Riwayat perubahan schema
 public/
-	uploads/                # File materi yang dapat dibuka siswa
+  uploads/                File materi yang dibuka siswa
 ```
 
 ## API Utama
@@ -155,73 +135,33 @@ public/
 | --- | --- | --- |
 | `/api/login` | `POST` | Login siswa atau guru. |
 | `/api/register` | `POST` | Registrasi akun baru. |
-| `/api/learning/dashboard` | `GET` | Mengambil statistik dan progres dashboard siswa. |
-| `/api/learning/paths` | `GET` | Mengambil jalur dan materi untuk siswa. |
-| `/api/learning/progress` | `POST` | Menyimpan materi terbaca dan jawaban. |
-| `/api/challenges` | `GET`, `POST` | Mengambil challenge atau menyimpan penyelesaian siswa. |
+| `/api/learning/dashboard` | `GET` | Mengambil dashboard dan progres siswa. |
+| `/api/learning/paths` | `GET` | Mengambil jalur dan materi siswa. |
+| `/api/learning/progress` | `POST` | Menyimpan progres, materi terbaca, dan jawaban. |
+| `/api/challenges` | `GET`, `POST` | Mengambil challenge dan menyimpan penyelesaian. |
 | `/api/teacher/dashboard` | `GET` | Mengambil ringkasan workspace guru. |
-| `/api/teacher/paths` | `GET`, `POST` | Mengelola jalur belajar guru. |
+| `/api/teacher/paths` | `GET`, `POST` | Mengelola jalur belajar. |
 | `/api/teacher/paths/[pathId]/materials` | `POST` | Mengunggah materi dan pertanyaan. |
 | `/api/teacher/challenges` | `GET`, `POST`, `PATCH`, `DELETE` | Mengelola challenge guru. |
 | `/api/teacher/achievements` | `GET`, `POST` | Mengelola pencapaian kelas. |
-| `/api/teacher/leaderboard` | `GET` | Melihat leaderboard untuk monitoring guru. |
+| `/api/teacher/leaderboard` | `GET` | Melihat leaderboard untuk monitoring. |
 
 ## Deployment
 
-KODEKITA dapat dideploy ke platform yang mendukung Next.js, seperti Vercel, dengan PostgreSQL production yang aktif.
+KODEKITA dapat dideploy ke platform yang mendukung Next.js dan PostgreSQL, seperti Vercel.
 
-1. Push repository ke GitHub.
-2. Import repository ke platform deployment.
-3. Tambahkan `DATABASE_URL` pada environment production.
-4. Jalankan migrasi production dengan `npx prisma migrate deploy` pada tahap deployment.
-5. Pastikan folder upload menggunakan storage yang sesuai jika platform deployment bersifat ephemeral.
+1. Import repository GitHub ke platform deployment.
+2. Tambahkan `DATABASE_URL` pada environment production.
+3. Jalankan `npx prisma migrate deploy` pada tahap deployment.
+4. Pastikan penyimpanan file upload menggunakan storage persisten jika platform bersifat ephemeral.
 
 ## Catatan Pengembangan
 
 - Perubahan schema database harus dibuat melalui migrasi Prisma.
-- Jangan menyimpan credential atau file `.env` di repository.
-- Setelah mengubah alur data, periksa endpoint terkait dan tampilan untuk kedua role.
-- Uji layout pada desktop dan mobile, terutama halaman leaderboard, editor challenge, form guru, dan modal detail challenge.
+- Jangan commit credential atau file `.env`.
+- Setelah mengubah API, cek tampilan untuk role siswa dan guru.
+- Uji halaman utama pada desktop dan mobile.
 
 ## Lisensi
 
-Project ini dikembangkan sebagai aplikasi pembelajaran KODEKITA. Detail lisensi dapat ditambahkan sesuai kebutuhan distribusi project.
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-#   k o d e k i t a 
- 
- 
+Project ini dikembangkan sebagai aplikasi pembelajaran KODEKITA.
